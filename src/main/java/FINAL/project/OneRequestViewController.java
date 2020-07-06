@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 public class OneRequestViewController {
 
 	@FXML
-	private TextField TimeField;
+	private TextField TimeField; 
 
 	@FXML
 	private TextArea ExplanationField;
@@ -25,18 +25,14 @@ public class OneRequestViewController {
 	@FXML
 	private TextField TeacherWhoStartedExam;
 
+	@FXML
+	private Button confirmButon;
 
-    @FXML
-    private Button confirmButon;
-
-    @FXML
-    private Button rejactButton;
+	@FXML
+	private Button rejactButton;
 
 	private StartExam starExam;
 
-	
-	
-	
 	public Button getConfirmButon() {
 		return this.confirmButon;
 	}
@@ -57,32 +53,20 @@ public class OneRequestViewController {
 	void ConfirmRequestButton(ActionEvent event) throws IOException, InterruptedException {
 		// add to timer and go to all students and display a message about the extra
 		// time
-		
 		getStartExam().AddTime(Double.parseDouble(TimeField.getText()));
-		
-		//List<TakeExam> takesList =new ArrayList<TakeExam>();
-	//	takesList=getStartExam().getTakeExam();
-	//	for(TakeExam tempExam : takesList)
-		//{
-		//	System.out.println("IN RWQUEST "+getStartExam().getRemainingTime());
-		//	tempExam.addTime(getStartExam());
-		//}
-
-		
 		HandleRequests.deleteTheRequest(getCourseOfExam().getText());
 		App.setMsgAtCenter("The request has confirmed");
-
-	
-		/*MsgToServer massageMsgToServer = new MsgToServer("", "Save", getStartExam());
+		/*MsgToServer massageMsgToServer = new MsgToServer("", "update", getStartExam(), "");
 		try {
 			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
 		} catch (IOException e) {
-		
+
 			e.printStackTrace();
-		}*/}
+		}*/
+	}
 
 	@FXML
-	    private Label label;
+	private Label label;
 
 	public Label getLabel() {
 		return label;
@@ -91,8 +75,6 @@ public class OneRequestViewController {
 	public void setLabel(Label label) {
 		this.label = label;
 	}
-
-
 
 	@FXML
 	void RejectRequestButton(ActionEvent event) throws IOException {
@@ -120,8 +102,8 @@ public class OneRequestViewController {
 	public StartExam getStartExam() {
 		return starExam;
 	}
+
 	/***** setters *******/
-	
 
 	public void setStartExam(StartExam starExam) {
 		this.starExam = starExam;

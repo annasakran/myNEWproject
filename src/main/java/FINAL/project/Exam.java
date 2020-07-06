@@ -1,5 +1,5 @@
 package FINAL.project;
-import FINAL.project.Question;
+import FINAL.project.Question;  
 import FINAL.project.Teacher;
 import FINAL.project.Subject;
 import FINAL.project.Course;
@@ -15,21 +15,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "exams")
 public class Exam implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7029466617153317290L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int ExamID;
 
 	private int Exam_id;
 	@Column(name = "Time_Exam")
@@ -94,7 +90,7 @@ public class Exam implements Serializable {
 		return this.questionList;
 	}
 	public int getColumn_id() {
-		return this.id;
+		return this.ExamID;
 	}
 	
 

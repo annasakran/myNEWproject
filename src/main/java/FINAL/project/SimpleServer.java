@@ -54,8 +54,6 @@ public class SimpleServer extends AbstractServer {
 			SessionFactory sessionFactory = getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			// System.out.println("stam");
-			// Initialization();
 		} catch (Exception e) {
 			if (session != null) {
 				session.getTransaction().rollback();
@@ -91,11 +89,13 @@ public class SimpleServer extends AbstractServer {
 		return configuration.buildSessionFactory(serviceRegistry);
 	}
 
+	private String classname;
+	
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 
 		MsgToServer newMassageMsgToServer = (MsgToServer) msg;
-
+classname= newMassageMsgToServer.getMyClass();
 		String massage = newMassageMsgToServer.getCommand();
 String operation=newMassageMsgToServer.getOperation();
 		String className = newMassageMsgToServer.getMyClass();
@@ -202,7 +202,7 @@ String operation=newMassageMsgToServer.getOperation();
 						client.sendToClient(newMassageMsgToClient);
 						return;
 					}
-				}
+				} 
 				msgToClient newMassageMsgToClient = new msgToClient("Person", "", null, operation);
 				System.out.println("Not exist");
 				client.sendToClient(newMassageMsgToClient);
@@ -566,6 +566,7 @@ String operation=newMassageMsgToServer.getOperation();
 
 		StartExam startExam2 = new StartExam("AS12", true, soha);
 		session.save(startExam2);
+		
 
 		startExam2.setExam(secondExam);
 		session.flush();
@@ -629,6 +630,8 @@ String operation=newMassageMsgToServer.getOperation();
 
 		Request request1 = new Request("nawras", "15", "KL25", startExam);
 		Request request2 = new Request("Anna", "20", "AS12", startExam2);
+		request1.setAvailable(true);
+		request2.setAvailable(true);
 		session.save(request1);
 		session.save(request2);
 		session.flush();

@@ -1,4 +1,4 @@
-package FINAL.project;
+ package FINAL.project;
 import java.io.IOException;
 
 import javafx.util.Pair;
@@ -6,19 +6,27 @@ import javafx.util.Pair;
 public class CreateQuestion {
 	
 	static Subject subject=new Subject();
-	static String ID,Description,Answe1,Answe2, Answe3, Answe4, CorrectAnswer;
-	static String incorrectFields="";
-	static String theError="";
+	static String incorrectFields=new String();
+	static String theError=new String();
+	
+	
+	
+	
+	
+	public static Subject getSubject() {
+		return subject;
+	}
+
+
+	public static void setSubject(Subject subject) {
+		CreateQuestion.subject = subject;
+	}
+
+
 	public static void CheckIfLegal(String ID,String Description,String Answe1,String Answe2,String Answe3,String Answe4,
 			String CorrectAnswer) throws InterruptedException {
-	 theError="";	
-		CreateQuestion.ID=ID;
-		CreateQuestion.Description=Description;
-		CreateQuestion.Answe1=Answe1;
-		CreateQuestion.Answe2=Answe2; 
-		CreateQuestion.Answe3=Answe3;
-		CreateQuestion.Answe4=Answe4; 
-		CreateQuestion.CorrectAnswer=CorrectAnswer;
+		theError="";	
+		incorrectFields="";
 		if(ID.isEmpty()) {
 			theError=theError+"The code field id an empty\n";
 			incorrectFields=incorrectFields+"ID";
@@ -37,6 +45,8 @@ public class CreateQuestion {
 				System.out.println("msg not sent ");
 				e.printStackTrace();
 			}
+			
+			//System.out.println("The subject is    "+ subject.getSubject_id());
 		   
 			 massageMsgToServer = new MsgToServer("Question", "Get", ID,"Check unique for create question");
 			try {
@@ -45,14 +55,15 @@ public class CreateQuestion {
 				System.out.println("msg not sent ");
 				e.printStackTrace();
 			}
+			Thread.sleep(700);
 		}
-		Thread.sleep(700);
+		
 			
 	//	}
 		
 //	public static void Check2(){
 		
-		if(theError.isEmpty()) {
+		
 		
 		if(Description.isEmpty()) {
 			theError=theError+"Discription field is an empty\n";
@@ -88,23 +99,23 @@ public class CreateQuestion {
 		}
 		
 			
-	}
+	
 		 Pair<String, String> state= new Pair<>(theError, incorrectFields);
 		CreateQuestionInterfaceController.setPair(state);
 	}
 	
 	
-	public static void createQuestion(){
+	public static void createQuestion(String id,String description,String answer1,String answer2,String answer3,String answer4,String correctAnswer){
 		
 		// make a question & save it
 		
-		Question question =new Question((Integer.parseInt(ID)),Description, subject);
-		question.AddAnswer(Answe1);
-		question.AddAnswer(Answe2);
-		question.AddAnswer(Answe3);
-		question.AddAnswer(Answe4);
+		Question question =new Question((Integer.parseInt(id)),description, subject);
+		question.AddAnswer(answer1);
+		question.AddAnswer(answer2);
+		question.AddAnswer(answer3);
+		question.AddAnswer(answer4);
 		question.setSubject(subject);
-		question.setCorrectAnswer(Integer.parseInt(CorrectAnswer));
+		question.setCorrectAnswer(Integer.parseInt(correctAnswer));
 		
 		MsgToServer massageMsgToServer2 = new MsgToServer("", "Save",question ,"");
 		try {

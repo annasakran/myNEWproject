@@ -100,7 +100,7 @@ App.setRoot("teacherHomePage");
     void PerformShowExam(ActionEvent event) throws IOException, NumberFormatException, InterruptedException {
     	Stage showStage=new Stage();
 		Pair<Parent, Object> displayPair=App.getFxmlAndController("DisplayExam");
-		CreateExam.DisplayExam(Integer.parseInt(getTime().getText()),TeacherName.getText(),choosenQuestions,points,TeacherNotes.getText(),StudentNotes.getText(),
+		CreateExam.DisplayExam(Integer.parseInt(Time.getText()),TeacherName.getText(),choosenQuestions,points,TeacherNotes.getText(),StudentNotes.getText(),
 								(DisplayExamController)displayPair.getValue());
 		Scene newsceneScene=new Scene(displayPair.getKey());
     	showStage.setScene(newsceneScene);
@@ -108,54 +108,7 @@ App.setRoot("teacherHomePage");
     }
 	
 	
-/*
-	@FXML
-	void performCreateExam(ActionEvent event) throws IOException {
-		//button.setEnabled(true);
-		button.setDisable(false);
-		boolean IndexTime;
-		boolean IndexName;
-		boolean IndexPoints;
-		boolean Indexquestions;
-		String theError=new String();
-		CorrectTime.setText("");
-		CorrectTeacherName.setText("");
-		CorrectGrades.setText("");
-		CorrectQuestions.setText("");
-		
-		try {
-			System.out.println("Aaaa");
-			theError = CreateExam.CheckIfLegal(Integer.parseInt(Time.getText()),getTeacherName().getText(),choosenQuestions,points,getTeacherNotes().getText(),getStudentNotes().getText());
-			System.out.println("xxxxx");
-		} catch (NumberFormatException | InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (theError.isEmpty()) {
-			
-			Platform.runLater(() -> {
-			
-				Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully created");
-				alert.show();
-			});
-			
-			return;
-		}
-		IndexTime = theError.contains("Time");
-		IndexName = theError.contains("Name");
-		IndexPoints = theError.contains("Points");
-		Indexquestions = theError.contains("Questions");
-		if (IndexTime == true)
-			CorrectTime.setText("X");
-		if (IndexName == true)
-			CorrectTeacherName.setText("X");
-		if (IndexPoints == true)
-			CorrectGrades.setText("X");
-		if (Indexquestions == true)
-			CorrectQuestions.setText("X");
-		if (IndexTime || IndexName || IndexPoints || Indexquestions)
-			App.setErrorAtCenter("Error! Incorrect data.");
-	}*/
+
     
     
     @FXML
@@ -173,8 +126,8 @@ App.setRoot("teacherHomePage");
 		CorrectQuestions.setText(""); 
 		theError = CreateExam.CheckIfLegal(time, teacherName, choosenQuestions, points);
 		if (theError.isEmpty()) {
-			CreateExam exam=new CreateExam();
-			exam.makeExam(time, teacherName, choosenQuestions, points,TeacherNotes.getText()
+			//CreateExam exam=new CreateExam();
+			CreateExam.makeExam(time, teacherName, choosenQuestions, points,TeacherNotes.getText()
 								,StudentNotes.getText());
 			button.setDisable(false);
 			createbutton.setDisable(true);
@@ -182,7 +135,7 @@ App.setRoot("teacherHomePage");
 				Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully created");
 				alert.show();
 			});
-			//App.setRoot("teacherHomePage");
+
 			return;
 		}
 		IndexTime = theError.contains("Time");

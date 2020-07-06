@@ -189,8 +189,6 @@ public class UpdateExam {
 	public static Pair<String, List<GradingViewController>> CheckGradingfields() {
 		int totalGrade = 0;
 		String wrongString = "";
-		//List<GradingViewController> newlist=new ArrayList<GradingViewController>();
-		//newlist=PagesInGradesScrollPane;
 		for (GradingViewController page : PagesInGradesScrollPane) {
 			page.getInCorrect().setText("");
 			System.out.println(page.getPoints().getText().isEmpty()+"IsEmpty");
@@ -244,21 +242,16 @@ public class UpdateExam {
 		}
 		if (numberOfChoosedQues == 0)
 			return new Pair<>(null, "There are no Choosed Question");
-		// List<Node> nodesInGradeWindow = new ArrayList<Node>();
-		// = GradesWindow.getChildren();
 		List<GradingViewController> toRemove = new ArrayList<GradingViewController>();
 		for (Question question : choosedQuestions) {
 			for (GradingViewController GradePage : PagesInGradesScrollPane) {
-				System.out.println(GradePage.getQuestion().getContent());
 				if (GradePage.getQuestion().getContent().contentEquals((question.getContent()))) {
 					toRemove.add(GradePage);
 				}
 			}
 		}
-		System.out.println(PagesInGradesScrollPane.size());
 		GradesWindow.getChildren().clear();
 		PagesInGradesScrollPane.removeAll(toRemove);
-		System.out.println(PagesInGradesScrollPane.size());
 		List<GradingViewController> list=new ArrayList<GradingViewController>();
 		for (GradingViewController GradePage2 : PagesInGradesScrollPane) {
 			i++;
@@ -360,12 +353,9 @@ public class UpdateExam {
 
 	
 
-	/********** צריך לשמור בדאתא ביס ******/
-
 	public static void initialize(UpdateExamController page1, int id) throws Exception {
 		examid = id;
 		page = page1;
-		//UpdateExamController.setPoints(thisExamToUpdtExam.getPoints());
 		UpdateExamController.setChoosenQuestions((thisExamToUpdtExam.getQuestions()));
 		
 		MsgToServer massageMsgToServer = new MsgToServer("Exam", "Get", id, "getExam to update");
@@ -417,11 +407,8 @@ public class UpdateExam {
 							+ question.getAnswers(3) + ".");
 			controller.setQuestion(question);
 			i++;
-			System.out.println("aaaaa  1111111");
 			QuestionsWindow.getChildren().add(fxmlPair.getKey());
-			System.out.println("aaaaa  222222");
 			page.getDisplayQuesField().setContent(QuestionsWindow);/******/
-			System.out.println("aaaaa  333333");
 			PagesInQuestionScrollPane.add((AddQuestionsViewController) fxmlPair.getValue());
 
 		}
@@ -448,11 +435,10 @@ public class UpdateExam {
 			controller.setGrade(Integer.parseInt((poinList.get(j))));
 			controller.setQuestion(ques);
 			GradesWindow.getChildren().add(fxmlPair.getKey());
-			//Platform.runLater(() ->
-			PagesInGradesScrollPane.add((GradingViewController) fxmlPair.getValue());
+			Platform.runLater(() ->
+			PagesInGradesScrollPane.add((GradingViewController) fxmlPair.getValue()));
 
 		}
-		//setPagesInGradesScrollPane(PagesInGradesScrollPane);
 		Platform.runLater(() -> page.getGradingField().setContent(GradesWindow));
 	}
 	

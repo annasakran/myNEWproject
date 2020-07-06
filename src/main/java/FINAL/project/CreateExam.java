@@ -1,4 +1,4 @@
-package FINAL.project;
+ package FINAL.project;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class CreateExam {
 	private static String Time;
 	
 	
-	public  void makeExam(String Time,String TeacherName, List<Question> choosenQuestions, List<Integer> points2,
+	public static  void makeExam(String Time,String TeacherName, List<Question> choosenQuestions, List<Integer> points2,
 									String teachernotes,String studentsnotes) throws InterruptedException {
 		MsgToServer massageMsgToServer = new MsgToServer("Course", "Get", exam_id.substring(2, 4),"CreateExam");
 		try {
@@ -36,7 +36,10 @@ public class CreateExam {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
 		}
+		Thread.sleep(1000);
 		System.out.println("in sending subject");
+		//System.out.println(course.getCourse_id());
+		//System.out.println("The uid print    "+ exam_id.substring(0, 2));
 		massageMsgToServer = new MsgToServer("Subject", "Get",exam_id.substring(0, 2),"CreateExam");
 		try {
 			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
@@ -44,14 +47,17 @@ public class CreateExam {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
 		}
+		Thread.sleep(1000);
+		//System.out.println(subject.getSubject_id());
 		Exam newExam=new Exam(Integer.parseInt(exam_id),Double.parseDouble(Time),points2,(Teacher)App.getUser(),
-				studentsnotes,teachernotes,getSubject(),getCourse(),choosenQuestions);
-		massageMsgToServer = new MsgToServer("Exam", "Save", newExam,"");
+				studentsnotes,teachernotes,subject,course,choosenQuestions);
+		massageMsgToServer = new MsgToServer("Exam", "Save", newExam,"CreateExam");
 		try {
 			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
 		} catch (IOException e) {
 			System.err.println("Save hane been failed");
 		}
+		
 		((Teacher)App.getUser()).addWrittenExamsList(newExam);
 		MsgToServer massageMsgToServer1 = new MsgToServer("", "Update", (Teacher)App.getUser(), "");
 
@@ -61,6 +67,7 @@ public class CreateExam {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
 		}
+		System.out.println("After save function /////////////////////////////////////////////////////////");
 	}
 	
 	
@@ -102,71 +109,9 @@ public class CreateExam {
 	
 	
 	
-	/*public static String CheckIfLegal(int time, String TeacherName, List<Question> choosenQuestions, List<Integer> points2,
-			String TeacherNotes, String StudentNotes) throws InterruptedException {
-		System.out.println("eeeeeeeeeeeeeee");
-		 teacherNotes = TeacherNotes;
-		 studentNotes = StudentNotes;
-		Time=Integer.toString(time);
-		choosenQuestions1=choosenQuestions;
-		int ErrorInTime = 0;
-		int ErrorInName = 0;
-		int ErrorInQuesList = 0;
-		int ErrorInPointsList = 0;
-		String ErrorMsg = "";
-		String spaString = TeacherName.replaceAll("\\s", "");
-		char[] chars = spaString.toCharArray();
-		if (Time.isEmpty() == true)
-			ErrorInTime = 1;
-		else if (Time.matches("[0-9]+") == false)
-			ErrorInTime = 1;
-		else if (Integer.parseInt(Time) <= 0)
-			ErrorInTime = 1;
-		if (TeacherName.isEmpty() == true)
-			ErrorInName = 1;
-		else {
-			for (char c : chars) {
-				if (!Character.isLetter(c) && Character.toString(c) != "") {
-					ErrorInName = 1;
-				}
-			}
-		}
-		if (choosenQuestions.isEmpty() == true)
-			ErrorInQuesList = 1;
-		if (points2.isEmpty() == true)
-			ErrorInPointsList = 1;
 
-		if (ErrorInTime == 1)
-			ErrorMsg = ErrorMsg + "Time";
-		if (ErrorInName == 1)
-			ErrorMsg = ErrorMsg + " + Name";
-		if (ErrorInPointsList == 1)
-			ErrorMsg = ErrorMsg + " + Points";
-		if (ErrorInQuesList == 1)
-			ErrorMsg = ErrorMsg + " + Questions";
-	teacher=((Teacher)App.getUser());
-		
-		MsgToServer massageMsgToServer = new MsgToServer("Course", "Get", exam_id.substring(2, 4),"CreateExam");
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
 
-		System.out.println("in sending subject");
-		massageMsgToServer = new MsgToServer("Subject", "Get",exam_id.substring(0, 2),"CreateExam");
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
-		return ErrorMsg;
-
-	}*/
-
-	public void checkExamID_c(String exam_id1) throws InterruptedException, IOException {
+	public static void checkExamID_c(String exam_id1) throws InterruptedException, IOException {
 		setExamID(exam_id1);
 		if (exam_id.isEmpty() == true)
 			App.setErrorAtCenter("An empty code");
@@ -174,21 +119,21 @@ public class CreateExam {
 			App.setErrorAtCenter("The Id must contain 6 digits");
 		else if (exam_id.length() != 6)
 			App.setErrorAtCenter("The Id must contain 6 digits");
-		
 		else 	
-		{System.out.println("Exam id "+exam_id);
+			{
+			System.out.println("Exam id "+exam_id);
 			int course_id = Integer.parseInt(exam_id.substring(2, 4));
-		
-		System.out.println("course_id id "+course_id);
-		MsgToServer massageMsgToServer = new MsgToServer("Course", "Get", course_id, "create exam check course");
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
+			System.out.println("course_id id "+course_id);
+			MsgToServer massageMsgToServer = new MsgToServer("Course", "Get", course_id, "create exam check course");
+			try {
+				SimpleChatClient.getClient().sendToServer(massageMsgToServer);
+			} catch (IOException e) {
+				System.out.println("msg not sent ");
+				e.printStackTrace();
+			}
 
-	}}
+		}
+	}
 
 	static public void checkExamID_S() throws InterruptedException, IOException {
 		int subject_id = Integer.parseInt(exam_id.substring(0, 2));
@@ -210,7 +155,7 @@ public class CreateExam {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
 		}
-		
+		System.out.println("Yes ID");
 		massageMsgToServer = new MsgToServer("Question", "Get", "ALL", "GETALL Q for create Exam");
 		try {
 			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
@@ -225,7 +170,7 @@ public class CreateExam {
 		return (exam_id);
 	}
 
-	public void setExamID(String exam_id1) {
+	public static void setExamID(String exam_id1) {
 		exam_id = (exam_id1);
 	}
 
@@ -323,16 +268,17 @@ public class CreateExam {
 
 	public static void DisplayExam(int time, String TeacherName, List<Question> choosenQuestions, List<Integer> points2,
 			String TeacherNotes, String StudentNotes, DisplayExamController object) throws InterruptedException {
-		
+		int i=1;
 		String initString = "Exam Structure '_'\n " + "Time: " + Time + "\n\n" + "Teacher Name: " + TeacherName + "\n\n"
 				+ "Notes For Teacher: " + TeacherNotes + "\n\n" + "Notes For Student: " + StudentNotes + "\n\n";
 		int index = 0;
-		String queString = null;
+		String queString = "";
 		for (Question question : choosenQuestions) {
-			queString += question.getContent() + "\n" + "1. " + question.getAnswers(0) + ".\n" + "2. "
+			queString +="Question number "+i+":\n"+ question.getContent() + "\n" + "1. " + question.getAnswers(0) + ".\n" + "2. "
 					+ question.getAnswers(1) + ".\n" + "3. " + question.getAnswers(2) + ".\n" + "4. "
 					+ question.getAnswers(3) + "." + "\n" + "Points: " + points2.get(index) + "\n\n";
 			index++;
+			i++;
 		}
 		String finishString = initString + queString;
 		object.getViewField().setText(finishString);
@@ -343,12 +289,12 @@ public class CreateExam {
 		
 	static void createActualExam()	
 		{
-		teacher=((Teacher)App.getUser());
-		System.out.println("in creating");
+		
+		/*System.out.println("in creating");
 		Exam exam = new Exam(Integer.parseInt(exam_id),Double.parseDouble(Time), points1, teacher, studentNotes, teacherNotes,
 				subject, course, choosenQuestions1);
 		setExam(exam);
-		teacher.addWrittenExamsList(exam);
+		((Teacher)App.getUser()).addWrittenExamsList(exam);
 		System.out.println("saving new Exam");
 		MsgToServer massageMsgToServer1 = new MsgToServer("", "Save", exam,"");
 		MsgToServer massageMsgToServer2 = new MsgToServer("", "Update", teacher,"");
@@ -358,61 +304,28 @@ public class CreateExam {
 		} catch (IOException e) {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
-	/*public static void saveInDB(String time, Teacher teacher1, String notesForStudent1, String notesForTeacher1)
-			throws InterruptedException {
-
-	teacher=((Teacher)App.getUser());
-		App.setTeacher_(null);
-		massageMsgToServer = new MsgToServer("Course", "Get", Integer.toString(getExamID()).substring(2, 4));
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
-		Thread.sleep(1000);
-		theCourse = (Course) App.getCourse_();
-		App.setCourse_(null);
-		massageMsgToServer = new MsgToServer("Subject", "Get", Integer.toString(getExamID()).substring(0, 2));
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
-		Thread.sleep(1000);
-		theSubject = App.getSubject_();
-		App.setSubject_(null);
-		Exam exam = new Exam(Integer.parseInt(exam_id), Double.parseDouble(time), points1, theTeacher, notesForStudent, notesForTeacher,
-				theSubject, theCourse, questions);
-		massageMsgToServer = new MsgToServer("", "Save", exam,"");
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-			System.out.println("msg not sent ");
-			e.printStackTrace();
-		}
-
-	}*/
+	
 
 	public static Subject getSubject() {
 		return subject;
 	}
 
-	public static void setSubject(Subject subject) {
-		CreateExam.subject = subject;
+	public static void setSubject(Subject subject1) {
+		subject = subject1;
 	}
 
 	public static Course getCourse() {
 		return course;
 	}
 
-	public static void setCourse(Course course) {
-		CreateExam.course = course;
+	public static void setCourse(Course course1) {
+		System.err.println("im in setcourse   "+ course1.getCourse_id());
+		course = course1;
+		System.err.println("im in getcourse   "+ getCourse().getCourse_id());
 	}
 	
 	

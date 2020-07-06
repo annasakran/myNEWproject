@@ -25,7 +25,7 @@ public class CreateExamIDController {
 	void CheckAndDefine(ActionEvent event) throws Exception {
 		String exam_id = ExamID.getText();
 		 IDstate = true;
-		createExam.checkExamID_c(exam_id);
+		CreateExam.checkExamID_c(exam_id);
 	
 	}
 
@@ -41,6 +41,8 @@ public class CreateExamIDController {
 
 	public static  void initialize(CreateExamInterfaceController pageController) throws Exception {
 		List<Question> questions = new ArrayList<Question>();
+		pageController.getTeacherName().setText(App.getUser().getPersonName());
+		pageController.getTeacherName().setDisable(true);
 		List<AddQuestionsViewController> addQuestionsPages = new ArrayList<AddQuestionsViewController>();
 		VBox box = new VBox();
 		int i = 1;

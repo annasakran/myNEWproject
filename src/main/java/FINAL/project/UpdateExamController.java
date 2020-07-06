@@ -18,13 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class UpdateExamController {
-	/*
-	 * private List<AddQuestionsViewController> addQuestionsPages = new
-	 * ArrayList<AddQuestionsViewController>(); private List<GradingViewController>
-	 * gradesPageControllers = new ArrayList<GradingViewController>(); private
-	 * 
-	 * List<Integer> points = new ArrayList<Integer>(); private String OldCode;
-	 */
+	
 
 	private static List<Integer> points = new ArrayList<Integer>();
 	private static List<Question> choosenQuestions = new ArrayList<Question>(); 
@@ -72,18 +66,7 @@ public class UpdateExamController {
 	
 	
 
-	/*@FXML
-	void PerformShowExam(ActionEvent event) throws IOException {
-		
-		  Stage showStage = new Stage(); 
-		  Pair<Parent, Object> displayPair = App.getFxmlAndController("DisplayExam");
-		  UpdateExam.DisplayExam(SubjectField.getText()+CourseField.getText()+ExamId.getText(),getTime().getText(), getTeacherName().getText(),
-		  choosenQuestions, points, getTeacherNotes().getText(),
-		  getStudentNotes().getText(), (DisplayExamController) displayPair.getValue());
-		  Scene newsceneScene = new Scene(displayPair.getKey());
-		  showStage.setScene(newsceneScene); showStage.show();
-		 
-	}*/
+	
 
 	@FXML
 	void performAddQuestion(ActionEvent event) throws IOException {
@@ -211,20 +194,7 @@ public class UpdateExamController {
         App.setRoot("teacherHomePage");
 	
   }  
-	/*  static void updateQuestionsInGradingField() throws IOException { VBox box =
-	  new VBox(); int i = 1; gradesPageControllers.clear(); for (Question ques :
-	  choosenQuestions) { Pair<Parent, Object> fxmlPair =
-	  App.getFxmlAndController("GradingView"); GradingViewController controller =
-	  (GradingViewController) fxmlPair.getValue();
-	  controller.getQuestionNumber().setText("Question Number " +
-	  Integer.toString(i)); controller.getViewQuestion() .setText(ques.getContent()
-	  + ":\n" + "1. " + ques.getAnswers(0) + ".\n" + "2. " + ques.getAnswers(1) +
-	  ".\n" + "3. " + ques.getAnswers(2) + ".\n" + "4. " + ques.getAnswers(3) +
-	  "."); i++; box.getChildren().add(fxmlPair.getKey());
-	  gradesPageControllers.add((GradingViewController) fxmlPair.getValue()); }
-	  getGradingField().setContent(box);
-	  setGradesPageControllers(gradesPageControllers);
-	  }*/
+	
 	
 
 	/*********** getters *************/
@@ -273,20 +243,7 @@ public class UpdateExamController {
 		return this.CorrectTeacherName;
 	}
 
-	/*
-	 * public List<AddQuestionsViewController> getAddQuestionsPages() { return
-	 * this.addQuestionsPages; }
-	 * 
-	 * public List<GradingViewController> getGradesPageControllers() { return
-	 * this.gradesPageControllers; }
-	 * 
-	 * public List<Question> getChoosenQuestions() { return this.choosenQuestions; }
-	 * 
-	 * public List<Integer> getPoints() { return this.points; }
-	 * 
-	 * public String getOldCode() { return this.OldCode; }
-	 */
-
+	
 	public Text getSubjectField() {
 		return this.SubjectField;
 	}
@@ -373,20 +330,6 @@ public class UpdateExamController {
 		choosenQuestions = choosenQuestions1;
 	}
 
-	/*
-	 * public void setAddQuestionsPages(List<AddQuestionsViewController>
-	 * addQuestionsPages) { this.addQuestionsPages = addQuestionsPages; }
-	 * 
-	 * public void setGradesPageControllers(List<GradingViewController>
-	 * gradesPageControllers) { this.gradesPageControllers = gradesPageControllers;
-	 * }
-	 * 
-	 * public void setChoosenQuestions(List<Question> choosenQuestions) {
-	 * this.choosenQuestions = choosenQuestions; }
-	 * 
-	 * public void setPoints(List<Integer> points) { this.points = points; }
-	 * 
-	 * public void setOldCode(String code) { this.OldCode = code; }
-	 */
+	
 
 }

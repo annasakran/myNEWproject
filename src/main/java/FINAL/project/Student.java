@@ -13,13 +13,12 @@ import FINAL.project.Course;
 
 
 
-@Entity(name = "students")
+@Entity(name = "students") 
 @Table(name = "students")
 public class Student extends Person  {
 
-	/**
-	 * 
-	 */
+
+	 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToMany(mappedBy = "studentsInTheStubject", cascade = { CascadeType.PERSIST,CascadeType.MERGE }, targetEntity = Subject.class)
@@ -39,19 +38,20 @@ public class Student extends Person  {
 	private List<Manual> manualExams ;
 	
 	public Student() { super();}
-	
+
 	public Student(int personId, String personName, String username, int authorization, String password) {
 		super(personId, personName, username, authorization, password);
 		allAnswerSheets = new ArrayList<AnswerSheet>();
 		subjects = new ArrayList<Subject>();
 		courses = new ArrayList<Course>();
 		takeExams = new ArrayList<TakeExam>();
+		manualExams=new ArrayList<Manual>();
 
 	}
 
 	
 	public void addManual(Manual Exam) {
-		this.manualExams.add(Exam);
+		manualExams.add(Exam);
 		
 	}
 	public List<Manual> getManualExams() {
@@ -115,7 +115,6 @@ public class Student extends Person  {
 	}
 
 	public void addAnswerSheet(AnswerSheet answerSheet) {
-		// TODO Auto-generated method stub
 		this.allAnswerSheets.add(answerSheet);
 	}
 	

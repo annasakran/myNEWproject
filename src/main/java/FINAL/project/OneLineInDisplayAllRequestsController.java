@@ -11,13 +11,13 @@ public class OneLineInDisplayAllRequestsController {
     
     @FXML
     private Label ExamNameAndID;
-    private Request request;////////////////////////
+    private Request request;
     
-    public Request getRequest() {////////////////////////////
+    public Request getRequest() {
 		return this.request;
 	}
 
-	public void setRequest(Request request) {///////////////////////
+	public void setRequest(Request request) {
 		this.request = request;
 	}
 

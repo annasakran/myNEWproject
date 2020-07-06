@@ -18,9 +18,6 @@ import FINAL.project.Student;
 @Table(name = "subjects")
 public class Subject implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8848726882760450032L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

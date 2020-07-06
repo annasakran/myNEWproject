@@ -66,7 +66,6 @@ public class TakeExamControl {
 		}
 
 		// Checkif ID exist and is in the course's List
-	//	System.out.println(Integer.parseInt(text));
 		int id = Integer.parseInt(text);
 		if (App.getUser().getPerson_Id() != id) {
 			return -1;

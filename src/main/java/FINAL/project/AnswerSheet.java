@@ -21,9 +21,7 @@ import javax.persistence.OneToOne;
 @Entity
 @Table(name = "answerSheets")
 public class AnswerSheet implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
