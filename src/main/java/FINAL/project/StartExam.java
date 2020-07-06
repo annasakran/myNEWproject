@@ -28,9 +28,7 @@ import javafx.util.Pair;
 @Entity
 @Table(name = "startExams")
 public class StartExam implements Serializable {
-	/**
-	 * 
-	 */
+
 	
 	private static final long serialVersionUID = 1303220275139547131L;
 	@Id
@@ -84,17 +82,12 @@ public class StartExam implements Serializable {
 	
 	@Column(name = "Exam_Code")
 	private String code;
-	//@Column(name = "TypeOfExam")
 	private boolean ExamType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 
-	///@one to one ---Documentation
-	///one to many -----Resquest
-	//@OneToOne(fetch = FetchType.LAZY)
-	 //@JoinColumn(name = "timing") private TimeCalculate timer;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "startExam")
 	private List<TakeExam> takeExam;
@@ -102,11 +95,7 @@ public class StartExam implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "startExam")
 	private List<Manual> ManualList;
-	/*
-	 * @OneToOne(fetch = FetchType.LAZY)
-	 * 
-	 * @JoinColumn(name = "documentation_id") private Documentation duc;
-	 */
+
 	private boolean Checked;
 	public StartExam() {
 	}
@@ -116,7 +105,6 @@ public class StartExam implements Serializable {
 		
 		this.code = code;
 		this.ExamType = ExamType;
-		//this.exam = new Exam();
 		this.takeExam = new ArrayList<TakeExam>();
 		 this.isLocked=false;
 		 this.ManualList =new ArrayList<Manual>();
@@ -176,8 +164,7 @@ public class StartExam implements Serializable {
 		 this.remainingTime = exam.getTime();
 		 this.intialTime=exam.getTime();
 		 this.actualTime=this.intialTime;
-		//timer.setExamTime(exam.getTime());
-		// Exam_time=getExam().getTime();
+
 	}
 
 	public void setCode(String code) {
@@ -225,7 +212,7 @@ public class StartExam implements Serializable {
 	
 	public void countDown() {
 		remainingTime--;
-		//return this.remainingTime;
+	
 	}
 	
 	private int count =0;

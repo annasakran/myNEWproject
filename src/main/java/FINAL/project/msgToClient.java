@@ -2,60 +2,53 @@ package FINAL.project;
 
 import java.io.Serializable;
 
-public class msgToClient implements Serializable{
+public class msgToClient implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-private String command;
-private Object myObject;
-private String myClass;
-private String operation;
 
-public String getMyClass() {
-	return myClass;
-}
+	private String command;
+	private Object myObject;
+	private String myClass;
+	private String operation;
 
-public void setMyClass(String myClass) {
-	this.myClass = myClass;
-}
+	public String getMyClass() {
+		return myClass;
+	}
 
-public msgToClient(String myClass,String msg,Object myObject,String operation){
-	
-	this.command=msg;
-	this.myObject=myObject;
-	this.myClass=myClass;
-	this.operation=operation;
-}
+	public void setMyClass(String myClass) {
+		this.myClass = myClass;
+	}
 
-public String getCommand() {
-	return command;
-}
+	public msgToClient(String myClass, String msg, Object myObject, String operation) {
 
-public void setCommand(String command) {
-	this.command = command;
-}
+		this.command = msg;
+		this.myObject = myObject;
+		this.myClass = myClass;
+		this.operation = operation;
+	}
 
+	public String getCommand() {
+		return command;
+	}
 
-public Object getMyObject() {
-	return myObject;
-}
+	public void setCommand(String command) {
+		this.command = command;
+	}
 
-public void setMyObject(Object myObject) {
-	this.myObject = myObject;
-}
+	public Object getMyObject() {
+		return myObject;
+	}
 
-public String getOperation() {
-	return operation;
-}
+	public void setMyObject(Object myObject) {
+		this.myObject = myObject;
+	}
 
-public void setOperation(String operation) {
-	this.operation = operation;
-}
+	public String getOperation() {
+		return operation;
+	}
 
-	
-	
-	
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+
 }

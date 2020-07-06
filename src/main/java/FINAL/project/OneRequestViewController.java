@@ -57,29 +57,10 @@ public class OneRequestViewController {
 	void ConfirmRequestButton(ActionEvent event) throws IOException, InterruptedException {
 		// add to timer and go to all students and display a message about the extra
 		// time
-		
 		getStartExam().AddTime(Double.parseDouble(TimeField.getText()));
-		
-		//List<TakeExam> takesList =new ArrayList<TakeExam>();
-	//	takesList=getStartExam().getTakeExam();
-	//	for(TakeExam tempExam : takesList)
-		//{
-		//	System.out.println("IN RWQUEST "+getStartExam().getRemainingTime());
-		//	tempExam.addTime(getStartExam());
-		//}
-
-		
 		HandleRequests.deleteTheRequest(getCourseOfExam().getText());
 		App.setMsgAtCenter("The request has confirmed");
-
-	
-		/*MsgToServer massageMsgToServer = new MsgToServer("", "Save", getStartExam());
-		try {
-			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}*/}
+	}
 
 	@FXML
 	    private Label label;

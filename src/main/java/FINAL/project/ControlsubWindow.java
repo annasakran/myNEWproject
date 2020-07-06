@@ -223,7 +223,6 @@ public class ControlsubWindow {
 		Student student = (Student) App.getUser();
 		if (student != null) {
 			allAnswerSheets = student.getAllAnswerSheets();
-			// System.out.println("im hereeeeeeee");
 			int i = 1;
 			for (AnswerSheet AS : allAnswerSheets) {
 
@@ -233,7 +232,7 @@ public class ControlsubWindow {
 					myString += "Course Name: " + AS.getExam().getCourseOfExam().getCourseName() + "\n"
 							+ "Subject Name: " + AS.getExam().getSubjectOfExam().getSubjectName() + "\n" + "Exam ID: "
 							+ AS.getExam().getExam_id() + "\n" + "Grade:  " + AS.getGrade() + "\n\n\n";
-					// System.out.println("hi2");
+				
 				}
 
 			}

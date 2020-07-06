@@ -163,7 +163,6 @@ public class CheckExam {
 		 */
 		System.out.println("EXAm type = " + startExam.ExamType() + " exam code" + startExam.getCode());
 		if (getStartExam().ExamType() == true) {
-			System.out.println("                              Im manual exam");
 			return -1;
 		}
 		if (getStartExam().IsChecked() == true && op == 1) {
@@ -172,7 +171,6 @@ public class CheckExam {
 		if (getStartExam().IsChecked() == false && op == 0) {
 			return 2;
 		}
-		System.out.println("                                 Im Online exam");
 		return 0;
 
 	}

@@ -14,9 +14,7 @@ import FINAL.project.StartExam;
 @Entity
 @Table(name = "request")
 public class Request implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7029466617153317290L;
 	//Fields 
 
@@ -83,8 +81,6 @@ public class Request implements Serializable {
 		this.available=true;
 	}
 
-	public Request() {
-		// TODO Auto-generated constructor stub
-	}
+	public Request() {}
 
 }

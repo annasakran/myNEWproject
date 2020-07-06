@@ -55,7 +55,7 @@ public class SimpleChatClient extends AbstractClient {
 			}
 		}
 
-		if (className.equals("SubjectList")) {
+		else if (className.equals("SubjectList")) {
 			if (operation.contentEquals("init Subjects Principle")) {
 				if (myobject != null) {
 
@@ -70,17 +70,16 @@ public class SimpleChatClient extends AbstractClient {
 			}
 		}
 
-		if (className.equals("Subject")) {
+		else if (className.equals("Subject")) {
 			if (operation.contentEquals("CreateExam")) {
 
 				if (myobject != null) {
 					CreateExam.setSubject((Subject) myobject);
 
 					System.out.println("callinfg creating");
-					CreateExam.createActualExam();
+					// CreateExam.createActualExam();
 				}
-			}
-			if (operation.contentEquals("updateQ")) {
+			} else if (operation.contentEquals("updateQ")) {
 
 				if (myobject != null) {
 					UpdateQuestionController.subject = ((Subject) myobject);
@@ -89,13 +88,12 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-			if (operation.contentEquals("Check subject for create question")) {
+			else if (operation.contentEquals("Check subject for create question")) {
 				if (myobject == null) {
 					CreateQuestion.theError = CreateQuestion.theError + "There are no subject with this id=" + "\n";
 					CreateQuestion.incorrectFields = CreateQuestion.incorrectFields + "ID";
 				}
-			}
-			if (operation.contentEquals("create exam check subject")) {
+			} else if (operation.contentEquals("create exam check subject")) {
 
 				if (myobject == null) {
 					try {
@@ -115,7 +113,7 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-			if (operation.contentEquals("Update exam check subject")) {
+			else if (operation.contentEquals("Update exam check subject")) {
 
 				if (myobject == null) {
 					try {
@@ -129,8 +127,7 @@ public class SimpleChatClient extends AbstractClient {
 					UpdateExam.checkID_C();
 				}
 			}
-		}
-		if (className.equals("AnswerSheetList")) {
+		} else if (className.equals("AnswerSheetList")) {
 			if (operation.contentEquals("DisplayResults Principle")) {
 				if (myobject != null) {
 
@@ -138,11 +135,10 @@ public class SimpleChatClient extends AbstractClient {
 				}
 
 			}
-		
-			
+
 		}
 
-		if (className.equals("QuestionList")) {
+		else if (className.equals("QuestionList")) {
 
 			if (operation.contentEquals("GetAll Question for find")) {
 
@@ -164,17 +160,34 @@ public class SimpleChatClient extends AbstractClient {
 				if (myobject != null) {
 
 					try {
-						UpdateExam newone=new UpdateExam();
+						UpdateExam newone = new UpdateExam();
 						newone.initialize2((List<Question>) myobject);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
+			}else if (operation.contentEquals("GETALL Q for create Exam")) {
+
+				try {
+					System.out.println("im in GETALL Q for create Exam");
+					CreateExamIDController.Questions = ((List<Question>) myobject);
+					System.out.println("got question");
+					CreateExamIDController.Define();
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 
-		if (className.equals("Question")) {
+		else if (className.equals("Question")) {
 			if (operation.contentEquals("updateQ")) {
 
 				if (myobject != null) {
@@ -182,8 +195,7 @@ public class SimpleChatClient extends AbstractClient {
 				} else {
 					UpdateQuestionController.myQuestion = (null);
 				}
-			}
-			if (operation.contentEquals("Check unique for create question")) {
+			} else if (operation.contentEquals("Check unique for create question")) {
 
 				if (myobject != null) {
 
@@ -191,16 +203,15 @@ public class SimpleChatClient extends AbstractClient {
 
 					// CreateQuestion.Check2();
 				}
-			}
-		}
-		if (className.equals("Course")) {
+			} 
+		} else if (className.equals("Course")) {
 			if (operation.contentEquals("CreateExam")) {
 				if (myobject != null) {
 					CreateExam.setCourse((Course) myobject);
 				}
 			}
 
-			if (operation.contentEquals("create exam check course")) {
+			else if (operation.contentEquals("create exam check course")) {
 				System.out.println("In C client");
 
 				if (myobject == null) {
@@ -222,8 +233,7 @@ public class SimpleChatClient extends AbstractClient {
 						e.printStackTrace();
 					}
 				}
-			}
-			if (operation.contentEquals("Update exam check course")) {
+			} else if (operation.contentEquals("Update exam check course")) {
 
 				if (myobject == null) {
 					try {
@@ -237,27 +247,10 @@ public class SimpleChatClient extends AbstractClient {
 					UpdateExam.checkID_E();
 				}
 			}
+
 		}
 
-		if (operation.contentEquals("GETALL Q for create Exam")) {
-
-			try {
-				CreateExamIDController.Questions = ((List<Question>) myobject);
-				System.out.println("got question");
-				CreateExamIDController.Define();
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (className.equals("ExamList")) {
+		else if (className.equals("ExamList")) {
 			System.out.println("in ExamList");
 			if (operation.contentEquals("init StartEXam Exams")) {
 				if (myobject != null) {
@@ -268,7 +261,7 @@ public class SimpleChatClient extends AbstractClient {
 					}
 				}
 			}
-			if (operation.contentEquals("	Update Exam")) {
+			if (operation.contentEquals("Update Exam")) {
 				if (myobject != null) {
 					App.setExams_List_((List<Exam>) myobject);
 				}
@@ -310,8 +303,7 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-		}
-		if (className.equals("Exam")) {
+		} else if (className.equals("Exam")) {
 
 			if (operation.contentEquals("getExam to update")) {
 				if (myobject != null) {
@@ -320,8 +312,7 @@ public class SimpleChatClient extends AbstractClient {
 				} else {
 
 				}
-			}
-			if (operation.contentEquals("updateExam id  if Exam exists")) {
+			} else if (operation.contentEquals("updateExam id  if Exam exists")) {
 
 				if (myobject == null) {
 					try {
@@ -351,7 +342,7 @@ public class SimpleChatClient extends AbstractClient {
 			 * TODO Auto-generated catch block e.printStackTrace(); } }
 			 */
 
-			if (operation.contentEquals("create exam check unique")) {
+			else if (operation.contentEquals("create exam check unique")) {
 				if (myobject != null) {
 					try {
 						App.setErrorAtCenter("The identifying number is not unique ");
@@ -363,13 +354,13 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-			if (operation.contentEquals("getExam to create StartExam")) {
+			else if (operation.contentEquals("getExam to create StartExam")) {
 				if (myobject != null) {
 					StartExamForTeacherController.exam = ((Exam) myobject);
 				}
 			}
 
-			if (operation.contentEquals("ShowExam for teacher")) {
+			else if (operation.contentEquals("ShowExam for teacher")) {
 
 				if (myobject != null) {
 					try {
@@ -414,21 +405,13 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-			if (operation.contentEquals("Open exam for student")) {
-				/*
-				 * if (myobject != null) { try { printsMyExamsController.ShowExam((Exam)
-				 * myobject); } catch (InterruptedException | IOException e) { // TODO
-				 * Auto-generated catch block e.printStackTrace(); } } try {
-				 * App.setCenter("Exam Id not found"); } catch (IOException e) {
-				 * e.printStackTrace(); }
-				 * 
-				 * }
-				 */
+			else if (operation.contentEquals("Open exam for student")) {
+
 				if (myobject != null) {
 					try {
 						System.err.println("stammmmmm");
 						List<TakeExam> allexamsforCurrentExams = ((Student) App.getUser()).getTakenExams();
-						if(allexamsforCurrentExams.isEmpty())
+						if (allexamsforCurrentExams.isEmpty())
 							System.err.println("empty");
 						for (TakeExam takeexam : allexamsforCurrentExams) {
 							System.out.println("lala");
@@ -455,7 +438,7 @@ public class SimpleChatClient extends AbstractClient {
 
 			}
 
-			if (operation.contentEquals("find Exam 1")) {
+			else if (operation.contentEquals("find Exam 1")) {
 				if (myobject != null) {
 					try {
 
@@ -474,7 +457,7 @@ public class SimpleChatClient extends AbstractClient {
 				}
 			}
 
-			if (operation.contentEquals("find Exam 2")) {
+			else if (operation.contentEquals("find Exam 2")) {
 				if (myobject != null) {
 					try {
 						System.out.println("IN FIND EXAM 2");
@@ -492,8 +475,7 @@ public class SimpleChatClient extends AbstractClient {
 
 				}
 			}
-		}
-		if (className.equals("TaketExamList")) {
+		} else if (className.equals("TaketExamList")) {
 
 			if (operation.contentEquals("Check Code takeExam")) {
 				App.setTakeExams_List_((List<TakeExam>) myobject);
@@ -501,14 +483,14 @@ public class SimpleChatClient extends AbstractClient {
 			}
 		}
 
-		if (className.equals("StartExam"))
+		else if (className.equals("StartExam"))
 
 		{
 			if (operation.contentEquals("getstarat exam for exam check")) {
 				if (myobject != null) {
 
 					try {
-						CheckExam.startExam=(StartExam) myobject;
+						CheckExam.startExam = (StartExam) myobject;
 						try {
 							CheckAndConfirmGrades.autocheck2();
 						} catch (IOException e) {
@@ -519,8 +501,8 @@ public class SimpleChatClient extends AbstractClient {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}else {
-					
+				} else {
+
 					try {
 						App.setCenter("Invalid Code!");
 					} catch (IOException e) {
@@ -528,18 +510,15 @@ public class SimpleChatClient extends AbstractClient {
 						e.printStackTrace();
 					}
 				}
-				
-				
-			}
-			if (operation.contentEquals("getstarat exam for exam confirm")) {
+
+			} else if (operation.contentEquals("getstarat exam for exam confirm")) {
 				if (myobject != null) {
 
-					CheckExam.startExam=(StartExam) myobject;
-					//CheckAndConfirmGrades.Confirm2();
+					CheckExam.startExam = (StartExam) myobject;
+					// CheckAndConfirmGrades.Confirm2();
 				}
 
-			}
-			if (operation.contentEquals("Check Code takeExam")) {
+			} else if (operation.contentEquals("Check Code takeExam")) {
 				if (myobject != null) {
 
 					if (((StartExam) myobject).isLock() == true) {
@@ -571,31 +550,23 @@ public class SimpleChatClient extends AbstractClient {
 			else if (operation.startsWith("Check if StartExam is Unique")) {
 				if (myobject != null) {
 					StartExamForTeacherController.setError("- This code not uniqe.\n");
-					//StartExamForTeacherController.ExamNotUnique("This code not uniqe.\n", "Code");
+					// StartExamForTeacherController.ExamNotUnique("This code not uniqe.\n",
+					// "Code");
 
 				}
-			
-		 if (operation.startsWith("create request")) {
-				if (myobject != null) {
-					//SendRequestController.CreateRequest((StartExam) myobject);
-					SendRequestController.setExam((StartExam)myobject);
-				}
-				else SendRequestController.setExam(null);
 			}
-	}
+
+			else if (operation.startsWith("create request")) {
+				if (myobject != null) {
+					// SendRequestController.CreateRequest((StartExam) myobject);
+					SendRequestController.setExam((StartExam) myobject);
+				} else
+					SendRequestController.setExam(null);
+			}
+
 		}
 
-		/*
-		 * if (className.equals("Request")) {
-		 * if(operation.contentEquals("Display All Requests")) { List<Request>
-		 * allRequests=(List<Request>)myobject;
-		 * HandleRequests.initializeRequestsForPrinciple(allRequests); }
-		 * if(operation.contentEquals("Add One Line For This Request")) {
-		 * if(myobject!=null) {
-		 * 
-		 * } } }
-		 */
-		if (className.equals("RequestList")) {
+		else if (className.equals("RequestList")) {
 
 			if (operation.contentEquals("init request principle")) {
 				if (myobject != null) {
@@ -612,20 +583,19 @@ public class SimpleChatClient extends AbstractClient {
 
 		}
 
-		if (className.equals("AnswerSheet"))
-		{
+		else if (className.equals("AnswerSheet")) {
 			System.err.println("in client answesheet");
-			if(myobject==null)
+			if (myobject == null)
 				System.err.println("object null");
 			if (operation.contentEquals("get AS for Student change")) {
 				if (myobject != null) {
-					ConfirmGradesInterface.AS=((AnswerSheet) myobject);
+					ConfirmGradesInterface.AS = ((AnswerSheet) myobject);
 					System.err.println("in change");
 				}
 			}
 			if (operation.contentEquals("get AS for Student confirm")) {
 				if (myobject != null) {
-					ConfirmGradesInterface.AS=((AnswerSheet) myobject);
+					ConfirmGradesInterface.AS = ((AnswerSheet) myobject);
 					System.err.println("in confirm");
 				}
 			}

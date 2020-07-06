@@ -17,9 +17,8 @@ import FINAL.project.Course;
 @Table(name = "students")
 public class Student extends Person  {
 
-	/**
-	 * 
-	 */
+
+	 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToMany(mappedBy = "studentsInTheStubject", cascade = { CascadeType.PERSIST,CascadeType.MERGE }, targetEntity = Subject.class)
@@ -115,7 +114,6 @@ public class Student extends Person  {
 	}
 
 	public void addAnswerSheet(AnswerSheet answerSheet) {
-		// TODO Auto-generated method stub
 		this.allAnswerSheets.add(answerSheet);
 	}
 	

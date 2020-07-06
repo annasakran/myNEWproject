@@ -34,18 +34,7 @@ public class CreateQuestionInterfaceController {
  
     @FXML
     private  Text ErrorID;
-    /*
-    private static Text ErrorID2;
-    private static Text ErrorAns22;
-    private static Text ErrorAns12;
-    private static Text ErrorDescription2;
-    private static Text ErrorAns32;
-    private static Text ErrorAns42;
-    private static Text ErrorCorrectAns2;
-    private static Text Errors2;
-    private static Circle circle2;
-    private static Text ErrorInCircle2;
-*/
+   
 
 
 	@FXML

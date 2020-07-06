@@ -133,8 +133,6 @@ public class HandleRequests {
 	
 	public static Pair<String, String> checkRequestData(String Time, String explanation, String code,StartExam startExam)
 			throws InterruptedException {
-		List<StartExam> allStartedExams = new ArrayList<StartExam>();
-
 		String teacher_name = "";
 		boolean errorInCode = true;
 		String errorFields = ""; 
@@ -183,18 +181,13 @@ public class HandleRequests {
 						+ "- Only teacher who atarted the exam can request extra time for this exam.\n";
 		}
 		if (theErrorMsg.isEmpty() == true) {
-			//for (StartExam startexam : allStartedExams) {
-				//if (startexam.getCode().contentEquals(code)) {
-					Request request = new Request(explanation, Time, code, SendRequestController.getExam());
-
-					MsgToServer massageMsgToServer = new MsgToServer("", "Save", request,"");
-					try {
-						SimpleChatClient.getClient().sendToServer(massageMsgToServer);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				//}
-			//}
+			Request request = new Request(explanation, Time, code, SendRequestController.getExam());
+				MsgToServer massageMsgToServer = new MsgToServer("", "Save", request,"");
+				try {
+					SimpleChatClient.getClient().sendToServer(massageMsgToServer);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 		return new Pair<>(theErrorMsg, errorFields);
 	}

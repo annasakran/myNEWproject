@@ -54,8 +54,6 @@ public class SimpleServer extends AbstractServer {
 			SessionFactory sessionFactory = getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			// System.out.println("stam");
-			// Initialization();
 		} catch (Exception e) {
 			if (session != null) {
 				session.getTransaction().rollback();
@@ -135,15 +133,16 @@ String operation=newMassageMsgToServer.getOperation();
 	}
 
 	public static <T> void mysave(Object myobject) {
-		//session.beginTransaction();
+		session.beginTransaction();
 		System.err.println("In Save ");
 		session.save(myobject);
-		session.flush();
+		System.out.println("aaaaaaa");
+		//session.flush();
 		session.getTransaction().commit();
 	}
 
 	public static <T> void myUpdate(Object myobject) throws InterruptedException {
-		//session.beginTransaction();
+		session.beginTransaction();
 		System.err.println("In update ");
 		Object mergedOne = session.merge(myobject);
 		session.update(mergedOne);
@@ -566,6 +565,7 @@ String operation=newMassageMsgToServer.getOperation();
 
 		StartExam startExam2 = new StartExam("AS12", true, soha);
 		session.save(startExam2);
+		
 
 		startExam2.setExam(secondExam);
 		session.flush();
@@ -629,6 +629,8 @@ String operation=newMassageMsgToServer.getOperation();
 
 		Request request1 = new Request("nawras", "15", "KL25", startExam);
 		Request request2 = new Request("Anna", "20", "AS12", startExam2);
+		request1.setAvailable(true);
+		request2.setAvailable(true);
 		session.save(request1);
 		session.save(request2);
 		session.flush();
