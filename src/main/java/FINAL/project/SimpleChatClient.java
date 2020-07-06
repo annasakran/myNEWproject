@@ -93,6 +93,9 @@ public class SimpleChatClient extends AbstractClient {
 					CreateQuestion.theError = CreateQuestion.theError + "There are no subject with this id=" + "\n";
 					CreateQuestion.incorrectFields = CreateQuestion.incorrectFields + "ID";
 				}
+				else {
+					CreateQuestion.setSubject((Subject)myobject);
+				}
 			} else if (operation.contentEquals("create exam check subject")) {
 
 				if (myobject == null) {
@@ -200,11 +203,14 @@ public class SimpleChatClient extends AbstractClient {
 				if (myobject != null) {
 
 					CreateQuestion.theError = CreateQuestion.theError + "This ID not uniform.\n";
-
+					CreateQuestion.incorrectFields = CreateQuestion.incorrectFields + "ID";
 					// CreateQuestion.Check2();
 				}
+				
 			} 
-		} else if (className.equals("Course")) {
+		}
+		
+		else if (className.equals("Course")) {
 			if (operation.contentEquals("CreateExam")) {
 				if (myobject != null) {
 					CreateExam.setCourse((Course) myobject);
@@ -486,7 +492,12 @@ public class SimpleChatClient extends AbstractClient {
 		else if (className.equals("StartExam"))
 
 		{
-			if (operation.contentEquals("getstarat exam for exam check")) {
+			if (operation.contentEquals("GetStartTime")) {
+				if (myobject != null) {
+					OnlineExamInterface.mystartExam=(StartExam) myobject;
+				}
+			}
+			else if (operation.contentEquals("getstarat exam for exam check")) {
 				if (myobject != null) {
 
 					try {

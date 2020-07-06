@@ -237,10 +237,9 @@ public class ManualExamController {
 		File selectedFile = fileChooser.showOpenDialog(null);
 		if (selectedFile != null) {
 			listview.getItems().add(selectedFile.getCanonicalFile());
-
+			submitButton.setDisable(false);
 			manualExam.setSubmittedExam(selectedFile);
 			((Student)App.getUser()).addManual(manualExam);
-			submitButton.setDisable(false);
 		} else {
 			App.setErrorAtCenter("Error! file is not valid");
 

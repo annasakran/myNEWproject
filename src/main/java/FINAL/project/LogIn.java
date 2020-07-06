@@ -1,6 +1,6 @@
 package FINAL.project;
 
-import java.io.IOException;
+import java.io.IOException; 
 import FINAL.project.Person;
 
 public class LogIn {

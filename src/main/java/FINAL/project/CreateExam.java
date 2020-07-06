@@ -57,8 +57,8 @@ public class CreateExam {
 		} catch (IOException e) {
 			System.err.println("Save hane been failed");
 		}
-		System.out.println("After save function /////////////////////////////////////////////////////////");
-		/*((Teacher)App.getUser()).addWrittenExamsList(newExam);
+		
+		((Teacher)App.getUser()).addWrittenExamsList(newExam);
 		MsgToServer massageMsgToServer1 = new MsgToServer("", "Update", (Teacher)App.getUser(), "");
 
 		try {
@@ -66,7 +66,8 @@ public class CreateExam {
 		} catch (IOException e) {
 			System.out.println("msg not sent ");
 			e.printStackTrace();
-		}*/
+		}
+		System.out.println("After save function /////////////////////////////////////////////////////////");
 	}
 	
 	

@@ -38,19 +38,20 @@ public class Student extends Person  {
 	private List<Manual> manualExams ;
 	
 	public Student() { super();}
-	
+
 	public Student(int personId, String personName, String username, int authorization, String password) {
 		super(personId, personName, username, authorization, password);
 		allAnswerSheets = new ArrayList<AnswerSheet>();
 		subjects = new ArrayList<Subject>();
 		courses = new ArrayList<Course>();
 		takeExams = new ArrayList<TakeExam>();
+		manualExams=new ArrayList<Manual>();
 
 	}
 
 	
 	public void addManual(Manual Exam) {
-		this.manualExams.add(Exam);
+		manualExams.add(Exam);
 		
 	}
 	public List<Manual> getManualExams() {

@@ -1,5 +1,8 @@
 package FINAL.project;
 import java.io.IOException;
+
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -65,7 +68,7 @@ public class CreateQuestionInterfaceController {
     private Text ErrorInCircle;
 
     String errorID2="";
-    static Pair<String,String> pair=new Pair<String, String>("", "");
+    static Pair<String,String> pair=new Pair<String, String>(new String(),new String());
     
   static  public Pair<String, String> getPair() {
 		return pair;
@@ -93,14 +96,16 @@ public class CreateQuestionInterfaceController {
     	ErrorID.setText("");
     	 CreateQuestion.CheckIfLegal(Question_ID.getText(),Description.getText(),Answe1.getText(),Answe2.getText(),Answe3.getText(),Answe4.getText(),
     												CorrectAnswer.getText());
-
-    	 if(pair.getKey()=="") {
+    	 
+    	 if(pair.getKey().isEmpty()) {
      		App.setMsgAtCenter("Added Successfully");
      		App.setRoot("teacherHomePage");
-     		CreateQuestion.createQuestion();
+     		CreateQuestion.createQuestion(Question_ID.getText(),Description.getText(),Answe1.getText(),Answe2.getText(),Answe3.getText(),Answe4.getText(),
+					CorrectAnswer.getText());
  	
      	}
      	else {
+     		
      		 ErrorAns1.setText("");
  	     	ErrorAns2.setText("");
  	     	ErrorAns3.setText("");
@@ -108,6 +113,7 @@ public class CreateQuestionInterfaceController {
  	     	ErrorCorrectAns.setText("");
  	     	ErrorDescription.setText("");
   		String theerrorString=pair.getValue();
+System.out.println(theerrorString+"   vvvvvvvvvvvvvvvvvvvvvvvvv");
 
      		if(theerrorString.contains("ID")) {  ErrorID.setText("X");}
      		if(theerrorString.contains("Description")) ErrorDescription.setText("X");

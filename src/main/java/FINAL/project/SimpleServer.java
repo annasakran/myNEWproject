@@ -133,11 +133,10 @@ String operation=newMassageMsgToServer.getOperation();
 	}
 
 	public static <T> void mysave(Object myobject) {
-		session.beginTransaction();
+		//session.beginTransaction();
 		System.err.println("In Save ");
 		session.save(myobject);
-		System.out.println("aaaaaaa");
-		//session.flush();
+		session.flush();
 		session.getTransaction().commit();
 	}
 

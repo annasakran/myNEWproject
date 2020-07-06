@@ -25,18 +25,14 @@ public class OneRequestViewController {
 	@FXML
 	private TextField TeacherWhoStartedExam;
 
+	@FXML
+	private Button confirmButon;
 
-    @FXML
-    private Button confirmButon;
-
-    @FXML
-    private Button rejactButton;
+	@FXML
+	private Button rejactButton;
 
 	private StartExam starExam;
 
-	
-	
-	
 	public Button getConfirmButon() {
 		return this.confirmButon;
 	}
@@ -60,10 +56,17 @@ public class OneRequestViewController {
 		getStartExam().AddTime(Double.parseDouble(TimeField.getText()));
 		HandleRequests.deleteTheRequest(getCourseOfExam().getText());
 		App.setMsgAtCenter("The request has confirmed");
+		MsgToServer massageMsgToServer = new MsgToServer("", "update", getStartExam(), "");
+		try {
+			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
-	    private Label label;
+	private Label label;
 
 	public Label getLabel() {
 		return label;
@@ -72,8 +75,6 @@ public class OneRequestViewController {
 	public void setLabel(Label label) {
 		this.label = label;
 	}
-
-
 
 	@FXML
 	void RejectRequestButton(ActionEvent event) throws IOException {
@@ -101,8 +102,8 @@ public class OneRequestViewController {
 	public StartExam getStartExam() {
 		return starExam;
 	}
+
 	/***** setters *******/
-	
 
 	public void setStartExam(StartExam starExam) {
 		this.starExam = starExam;

@@ -22,7 +22,7 @@ public class LogInController {
 
 	private Timer timer;
 	 
-
+	
 	@FXML
 	void PerformLogin(ActionEvent event) throws IOException, InterruptedException {
 		System.out.println("1");
