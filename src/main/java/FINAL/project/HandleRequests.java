@@ -20,7 +20,7 @@ public class HandleRequests {
 	
 		for (OneLineInDisplayAllRequestsController line : allRequestsLins) {
 		
-			if (line.getExamNameAndID().getText().contentEquals(name)) {
+			if (line.getExamNameAndID().getText().contentEquals(name) && line.getRequest().isAvailable()) {
 				Request request = line.getRequest();
 				request.setAvailable(false);
 				MsgToServer massageMsgToServer1 = new MsgToServer("", "Update", request, "");

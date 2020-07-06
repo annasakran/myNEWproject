@@ -45,7 +45,7 @@ public class SimpleChatClient extends AbstractClient {
 
 						}
 					}
-				}
+				} 
 				try {
 					System.out.println("9");
 					LogIn.HandleCheck();

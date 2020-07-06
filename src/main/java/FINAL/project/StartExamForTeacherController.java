@@ -113,8 +113,14 @@ public static void setError(String error2) {
 					sExam.setType(true);
 				}
 				sExam.setExam(exam);// set the exam for the start exam
+				MsgToServer massageMsgToServer = new MsgToServer("StartExam", "Save", sExam,"");
+				try {
+					SimpleChatClient.getClient().sendToServer(massageMsgToServer);
+				} catch (IOException e) {
+					System.err.println("Save hane been failed");
+				}
 				((Teacher) App.getUser()).addStartedExamsList(sExam);// adding the exam to her list of started exam
-				MsgToServer massageMsgToServer= new MsgToServer("", "Update", ((Teacher) App.getUser()), "");// saving the teacher
+				 massageMsgToServer= new MsgToServer("", "Update", ((Teacher) App.getUser()), "");// saving the teacher
 				SimpleChatClient.getClient().sendToServer(massageMsgToServer);
 				App.setMsgAtCenter("The exam start");
 				App.setRoot("teacherHomePage");

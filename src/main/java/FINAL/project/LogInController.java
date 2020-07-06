@@ -25,13 +25,10 @@ public class LogInController {
 	
 	@FXML
 	void PerformLogin(ActionEvent event) throws IOException, InterruptedException {
-		System.out.println("1");
 		TriesNumber++;
 		LogIn.CheckUserNameAndPassword(username.getText(), password.getText());
-		System.out.println("12");
 		if (getTriesNumber() > 3) {
 			timer = new Timer();
-			System.out.println("13");
 			TimerTask My_task_1 = new TimerTask() {
 				@Override
 				public void run() {

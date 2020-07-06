@@ -19,11 +19,9 @@ public class LogIn {
 		// getting person from Server
 		username = UserName;
 		password = Password;
-		System.out.println("3");
 		if (UserName.isEmpty() == true || Password.isEmpty() == true)
 			App.setCenter("You must insert user name and password to connect");
 		else {
-			System.out.println("4");
 			MsgToServer massageMsgToServer = new MsgToServer("Person", "Get", UserName, "LogIn Check");
 			try {
 				SimpleChatClient.getClient().sendToServer(massageMsgToServer);
@@ -31,12 +29,10 @@ public class LogIn {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("5");
 
 	}
 
 	public static void HandleCheck() throws IOException {
-		System.out.println("10");
 		if (UserNameExist == false) {
 			App.setCenter("Username does not exist! , please try again");}
 		else if (PasswordExist == false) {

@@ -100,7 +100,7 @@ App.setRoot("teacherHomePage");
     void PerformShowExam(ActionEvent event) throws IOException, NumberFormatException, InterruptedException {
     	Stage showStage=new Stage();
 		Pair<Parent, Object> displayPair=App.getFxmlAndController("DisplayExam");
-		CreateExam.DisplayExam(Integer.parseInt(getTime().getText()),TeacherName.getText(),choosenQuestions,points,TeacherNotes.getText(),StudentNotes.getText(),
+		CreateExam.DisplayExam(Integer.parseInt(Time.getText()),TeacherName.getText(),choosenQuestions,points,TeacherNotes.getText(),StudentNotes.getText(),
 								(DisplayExamController)displayPair.getValue());
 		Scene newsceneScene=new Scene(displayPair.getKey());
     	showStage.setScene(newsceneScene);

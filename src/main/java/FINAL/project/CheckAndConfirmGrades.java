@@ -79,9 +79,13 @@ public class CheckAndConfirmGrades {
 			}
 		//	loader.setProgress(100.0);
 			System.out.println("after examcheck2");
+			
 		App.setMsgAtCenter("The exam have been checked ");
 		}
 	}
+	
+	
+	
 	@FXML
 	void Confirm(ActionEvent event) throws InterruptedException, IOException {
 		code = TextField.getText();
@@ -134,6 +138,7 @@ public class CheckAndConfirmGrades {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			return -1;
 		}
 		if (result== 2) {
 			try {
@@ -141,6 +146,8 @@ public class CheckAndConfirmGrades {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			return 2;
+		
 		}
 		if (result== -2) {
 
@@ -148,7 +155,9 @@ public class CheckAndConfirmGrades {
 				App.setCenter("Exam has already been checked!");
 			} catch (IOException e) {
 				e.printStackTrace();
-			}}
+			}
+			return -2;
+		}
 		System.out.println(result);
 		return result;
 	}

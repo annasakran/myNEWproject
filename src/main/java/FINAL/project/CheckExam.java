@@ -83,6 +83,13 @@ public class CheckExam {
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
+					getStartExam().SetIsChecked(true);
+					 massageMsgToServer = new MsgToServer("", "Update", getStartExam(), "");
+					try {
+						SimpleChatClient.getClient().sendToServer(massageMsgToServer);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}

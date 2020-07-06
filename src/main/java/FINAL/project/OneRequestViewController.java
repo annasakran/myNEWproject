@@ -56,13 +56,13 @@ public class OneRequestViewController {
 		getStartExam().AddTime(Double.parseDouble(TimeField.getText()));
 		HandleRequests.deleteTheRequest(getCourseOfExam().getText());
 		App.setMsgAtCenter("The request has confirmed");
-		MsgToServer massageMsgToServer = new MsgToServer("", "update", getStartExam(), "");
+		/*MsgToServer massageMsgToServer = new MsgToServer("", "update", getStartExam(), "");
 		try {
 			SimpleChatClient.getClient().sendToServer(massageMsgToServer);
 		} catch (IOException e) {
 
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	@FXML

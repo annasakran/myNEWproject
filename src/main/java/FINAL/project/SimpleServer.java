@@ -89,11 +89,13 @@ public class SimpleServer extends AbstractServer {
 		return configuration.buildSessionFactory(serviceRegistry);
 	}
 
+	private String classname;
+	
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 
 		MsgToServer newMassageMsgToServer = (MsgToServer) msg;
-
+classname= newMassageMsgToServer.getMyClass();
 		String massage = newMassageMsgToServer.getCommand();
 String operation=newMassageMsgToServer.getOperation();
 		String className = newMassageMsgToServer.getMyClass();
@@ -141,7 +143,7 @@ String operation=newMassageMsgToServer.getOperation();
 	}
 
 	public static <T> void myUpdate(Object myobject) throws InterruptedException {
-		session.beginTransaction();
+		//session.beginTransaction();
 		System.err.println("In update ");
 		Object mergedOne = session.merge(myobject);
 		session.update(mergedOne);
@@ -200,7 +202,7 @@ String operation=newMassageMsgToServer.getOperation();
 						client.sendToClient(newMassageMsgToClient);
 						return;
 					}
-				}
+				} 
 				msgToClient newMassageMsgToClient = new msgToClient("Person", "", null, operation);
 				System.out.println("Not exist");
 				client.sendToClient(newMassageMsgToClient);

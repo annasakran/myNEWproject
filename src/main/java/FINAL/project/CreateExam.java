@@ -268,16 +268,17 @@ public class CreateExam {
 
 	public static void DisplayExam(int time, String TeacherName, List<Question> choosenQuestions, List<Integer> points2,
 			String TeacherNotes, String StudentNotes, DisplayExamController object) throws InterruptedException {
-		
+		int i=1;
 		String initString = "Exam Structure '_'\n " + "Time: " + Time + "\n\n" + "Teacher Name: " + TeacherName + "\n\n"
 				+ "Notes For Teacher: " + TeacherNotes + "\n\n" + "Notes For Student: " + StudentNotes + "\n\n";
 		int index = 0;
-		String queString = null;
+		String queString = "";
 		for (Question question : choosenQuestions) {
-			queString += question.getContent() + "\n" + "1. " + question.getAnswers(0) + ".\n" + "2. "
+			queString +="Question number "+i+":\n"+ question.getContent() + "\n" + "1. " + question.getAnswers(0) + ".\n" + "2. "
 					+ question.getAnswers(1) + ".\n" + "3. " + question.getAnswers(2) + ".\n" + "4. "
 					+ question.getAnswers(3) + "." + "\n" + "Points: " + points2.get(index) + "\n\n";
 			index++;
+			i++;
 		}
 		String finishString = initString + queString;
 		object.getViewField().setText(finishString);
