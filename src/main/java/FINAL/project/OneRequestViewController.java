@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 public class OneRequestViewController {
 
 	@FXML
-	private TextField TimeField;
+	private TextField TimeField; 
 
 	@FXML
 	private TextArea ExplanationField;

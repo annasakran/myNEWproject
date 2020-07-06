@@ -13,7 +13,7 @@ import FINAL.project.Course;
 
 
 
-@Entity(name = "students")
+@Entity(name = "students") 
 @Table(name = "students")
 public class Student extends Person  {
 
